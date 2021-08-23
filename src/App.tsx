@@ -1,4 +1,6 @@
 function App() {
+    const hello = '';
+    console.log(hello);
     return (
         <div className="App">
             <header className="App-header">
