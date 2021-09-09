@@ -1,0 +1,16 @@
+.header__component{
+    .top-header {
+        svg{
+            color: $primary;
+            margin-right: 6px;
+        }
+    }
+    .middle-header{
+        .branding{
+            width: 100%;
+            max-width: 120px;
+        }
+       
+    }
+    
+}
