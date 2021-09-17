@@ -7,10 +7,11 @@ import {
     Nav,
     Navbar,
 } from 'react-bootstrap';
-import { FiPhoneCall } from 'react-icons/fi';
+import { FiPhoneCall, FiShoppingBag } from 'react-icons/fi';
 import { FaRegEnvelope } from 'react-icons/fa';
 import { BsPhone } from 'react-icons/bs';
 import logo from '../../assest/fvaly.png';
+import { BiSearch, BiUser } from 'react-icons/bi';
 const Header = () => {
     return (
         <div className="header__component">
@@ -38,31 +39,37 @@ const Header = () => {
             </div>
             <div className="middle-header">
                 <Container>
-                    <div className="d-flex align-item-center">
+                    <div className="d-flex align-item-center gap-5 py-3">
                         <img className="branding" src={logo} alt="fvaly" />
-                        <InputGroup className="mb-3">
+                        <InputGroup>
                             <FormControl
+                                className="border border-primary"
                                 placeholder="Recipient's username"
                                 aria-label="Recipient's username"
                                 aria-describedby="basic-addon2"
                             />
-                            <Button
-                                variant="outline-secondary"
-                                id="button-addon2"
-                            >
-                                Button
+                            <Button variant="primary" id="button-addon2">
+                                <BiSearch />
                             </Button>
                         </InputGroup>
+                        <ul className="icon-list list-unstyled d-flex gap-2">
+                            <li>
+                                <FiShoppingBag />
+                            </li>
+                            <li>
+                                <BiUser />
+                            </li>
+                        </ul>
                     </div>
                 </Container>
             </div>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    <Navbar.Brand href="#home">Categories</Navbar.Brand>
+                    <Nav className="ms-auto">
+                        <Nav.Link href="#home">News feed</Nav.Link>
+                        <Nav.Link href="#features">Merchant Zone</Nav.Link>
+                        <Nav.Link href="#pricing">Help</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
