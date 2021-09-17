@@ -2,8 +2,6 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useCallback } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { addToCart } from 'redux/actionCreators/cartAction';
 import useAsync from '../../Hooks/useAsync';
 import ProductService from '../../Services/ProductService';
 import { IProduct } from '../../types';
@@ -16,8 +14,6 @@ const ProductDetails = () => {
     const getProduct = useCallback(() => {
         return ProductService.getProductByID(id);
     }, [id]);
-
-    //   const dispatch = useDispatch();
 
     const { data, isLoading, isSuccess, isError, error } =
         useAsync<IProduct>(getProduct);
