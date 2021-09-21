@@ -6,6 +6,8 @@ import useAsync from '../../Hooks/useAsync';
 import ProductService from '../../Services/ProductService';
 import { IProduct } from '../../types';
 import imageUrlParser from '../../utilities/ImageUrlParser';
+import { useDispatch } from 'react-redux';
+import { AddToCart } from '../../redux/Actions/CartAction';
 interface IParams {
     id: string;
 }
@@ -14,7 +16,7 @@ const ProductDetails = () => {
     const getProduct = useCallback(() => {
         return ProductService.getProductByID(id);
     }, [id]);
-
+    const dispatch = useDispatch();
     const { data, isLoading, isSuccess, isError, error } =
         useAsync<IProduct>(getProduct);
 
@@ -37,7 +39,9 @@ const ProductDetails = () => {
                                 <h3>{name}</h3>
                                 <h1 className="mt-3 mb-5">৳ {price}</h1>
                                 <button
-                                    //   onClick={() => dispatch(addToCart(data as IProduct))}
+                                    onClick={() =>
+                                        dispatch(AddToCart(data as IProduct))
+                                    }
                                     className="btn btn-primary"
                                 >
                                     <AiOutlineShoppingCart />

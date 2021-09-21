@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Checkout from './pages/CheckOut/CheckOut';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 const Help = React.lazy(() => import('./pages/Help/Help'));
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -18,6 +19,7 @@ const AppRouter: React.FC = ({ children }) => {
                         path="/product/:id"
                         component={ProductDetails}
                     />
+                    <Route exact path="/checkout" component={Checkout} />
                 </Suspense>
             </Switch>
         </Router>
