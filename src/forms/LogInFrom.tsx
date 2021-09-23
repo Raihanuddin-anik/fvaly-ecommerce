@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { LogIn } from '../redux/ActionCreators/AuthActionCreator';
+import { login } from '../redux/ActionCreators/AuthActionCreator';
 import { AppState } from '../redux/store';
 
 interface ILoginFormData {
@@ -16,7 +16,9 @@ const LoginForm = () => {
         password: '',
     });
 
-    const data = useSelector((state: AppState) => state.Auth);
+    const { data, status, error } = useSelector(
+        (state: AppState) => state.Auth
+    );
 
     const dispatch = useDispatch();
 
@@ -32,6 +34,11 @@ const LoginForm = () => {
             <Container>
                 <div className="login_main py-5">
                     <Row>
+                        {status === 'error' && (
+                            <Col md={{ span: 4, offset: 4 }} className="p-0">
+                                <Alert variant="primary">{error}</Alert>
+                            </Col>
+                        )}
                         <Col
                             md={{ span: 4, offset: 4 }}
                             className="float-center bg-white p-5 shadow-sm rounded"
@@ -65,7 +72,7 @@ const LoginForm = () => {
                                     <Button
                                         disabled={status === 'pending'}
                                         onClick={() =>
-                                            dispatch(LogIn(formData))
+                                            dispatch(login(formData))
                                         }
                                         variant="dark"
                                     >

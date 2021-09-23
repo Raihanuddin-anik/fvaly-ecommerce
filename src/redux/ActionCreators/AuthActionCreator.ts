@@ -3,20 +3,30 @@ import AuthService from '../../Services/AuthService';
 import { AuthAction } from '../Actions/AuthAction';
 import { ActionType } from '../ActionType';
 
-export const LogIn = (payload: { email: string; password: string }) => {
+export const login = (payload: { email: string; password: string }) => {
     return (dispatch: Dispatch<AuthAction>) => {
-        AuthService.login(payload).then((data) => {
-            dispatch({
-                type: ActionType.LOGIN,
-                payload: data,
-            });
+        dispatch({
+            type: ActionType.LOGIN_PENDING,
         });
+        AuthService.login(payload)
+            .then((data) => {
+                dispatch({
+                    type: ActionType.LOGIN_SUCCESS,
+                    payload: data,
+                });
+            })
+            .catch((err) => {
+                dispatch({
+                    type: ActionType.LOGIN_ERROR,
+                    payload: err?.response?.data?.message,
+                });
+            });
     };
+    // return ;
 };
 
-// export const LogOut = (payload: string) => {
-//     return {
-//         type: ActionType.LOGOUT,
-//         payload,
-//     };
-// };
+export const LogOut = () => {
+    return {
+        type: ActionType.LOGOUT,
+    };
+};

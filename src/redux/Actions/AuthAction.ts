@@ -1,13 +1,25 @@
-import { IAuthData } from '../../types';
-import { ActionType } from './../ActionType';
+import { ActionType } from '../ActionType';
+import { IAuthData } from './../../types';
 
-interface LogInAction {
-    type: ActionType.LOGIN;
+interface loginSuccessAction {
+    type: ActionType.LOGIN_SUCCESS;
     payload: IAuthData;
 }
 
-interface LogOutAction {
+interface loginPendingAction {
+    type: ActionType.LOGIN_PENDING;
+}
+
+interface loginErrorAction {
+    type: ActionType.LOGIN_ERROR;
+    payload: string;
+}
+interface logoutAction {
     type: ActionType.LOGOUT;
 }
 
-export type AuthAction = LogInAction | LogOutAction;
+export type AuthAction =
+    | loginSuccessAction
+    | loginPendingAction
+    | loginErrorAction
+    | logoutAction;

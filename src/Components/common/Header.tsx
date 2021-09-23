@@ -8,16 +8,19 @@ import {
     Navbar,
 } from 'react-bootstrap';
 import { FiPhoneCall, FiShoppingBag } from 'react-icons/fi';
-import { FaRegEnvelope } from 'react-icons/fa';
+import { FaRegEnvelope, FaSignOutAlt } from 'react-icons/fa';
 import { BsPhone } from 'react-icons/bs';
 import logo from '../../assest/fvaly.png';
 import { BiSearch, BiUser } from 'react-icons/bi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/store';
 import { IProduct } from '../../types';
 import { Link } from 'react-router-dom';
+import { LogOut } from '../../redux/ActionCreators/AuthActionCreator';
 const Header = () => {
+    const dispatch = useDispatch();
     const cart: IProduct[] = useSelector((state: AppState) => state.Cart);
+    const { data } = useSelector((state: AppState) => state.Auth);
     return (
         <div className="header__component">
             <div className="top-header py-2 bg-light border-bottom">
@@ -64,11 +67,19 @@ const Header = () => {
                                     <span>{cart.length}</span>
                                 </Link>
                             </li>
-                            <li>
-                                <Link to="/login">
-                                    <BiUser />
-                                </Link>
-                            </li>
+                            {data ? (
+                                <li className="btn">
+                                    <FaSignOutAlt
+                                        onClick={() => dispatch(LogOut())}
+                                    />
+                                </li>
+                            ) : (
+                                <li>
+                                    <Link to="/login">
+                                        <BiUser />
+                                    </Link>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </Container>
