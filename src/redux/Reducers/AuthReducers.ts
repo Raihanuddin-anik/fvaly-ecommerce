@@ -10,6 +10,7 @@ interface IAuthState {
 
 const initialState: IAuthState = {
     data: null,
+
     status: 'idle',
     error: null,
 };
