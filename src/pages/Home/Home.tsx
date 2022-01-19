@@ -5,6 +5,7 @@ import ProductService from '../../Services/ProductService';
 
 const Home = () => {
     const { data, isLoading } = useAsync(ProductService.getProducts);
+
     return (
         <div>
             <Banner />

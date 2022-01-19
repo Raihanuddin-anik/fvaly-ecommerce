@@ -10,6 +10,7 @@ interface IProps {
 }
 
 const Products = ({ products, isLoading }: IProps) => {
+    console.log(products);
     return (
         <div>
             <Container>
